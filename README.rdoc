@@ -1,0 +1,58 @@
+= FusionMaps
+
+A javascript library that makes it easy to integrate google maps and fusion tables
+
+== Installation
+
+  git clone git@github.com:open-city/fusionmaps.git
+
+
+== Dependencies
+
+  Google Maps
+  Google Fusion Tables
+
+
+== Getting Started
+
+An example project is provided in this repository under /examples  
+
+
+== Configuration Options
+
+
+== Team
+
+Chad W Pry chad.pry@opencityapps.org
+Derek Eder derek.eder@opencityapps.org
+
+
+== More detail needed?
+
+Contact us via email!
+
+
+== Errors / Bugs
+
+If something is not behaving intuitively, it is a bug, and should be reported.
+Report it here: https://github.com/open-city/fusionmaps/issues
+
+
+== TODOs
+
+* TBD
+
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Commit, do not mess with rakefile, version, or history.
+  * (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2012 Chad W Pry, Derek Eder, and OpenCity. Released under the MIT License.
+
+See LICENSE for details.
