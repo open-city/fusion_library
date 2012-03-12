@@ -22,30 +22,24 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      // RESIZING OF MAP
       $("#chicago_ward").height(document.body.parentElement.clientHeight);
-
       $(window).resize(function() {
         $("#chicago_ward").height(document.body.parentElement.clientHeight);
       });
 
-      var ward = 27;
+
+      // DRAWING OF MAP
       var chicago_ward_table_id = 2954091;
       var chicago_centroid = new google.maps.LatLng(41.8781136, -87.66677856445312);
 
       var ward_map_default_options = {
-        zoom: 12,
-//        center: chicago_centroid,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        streetViewControl: false,
-        suppressInfoWindows: true
+        zoom: 12, center: chicago_centroid, mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false, streetViewControl: false, suppressInfoWindows: true
       }
 
       var map   = Fusion.Map.create("chicago_ward", ward_map_default_options);
-      var layer = Fusion.Layer.create({select: "geometry", from: chicago_ward_table_id}, map.page_element);
-      map.add_map_bounds({from: chicago_ward_table_id}, function(response) {
-        map.set_map_bounds(response);
-      });
+      var layer = Fusion.Layer.create({select: "geometry", from: chicago_ward_table_id, where: "name = 26"}, map.page_element);
     });
   </script>
 
