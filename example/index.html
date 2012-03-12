@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Fusion Library Example</title>
+
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+  <meta content='text/css' http-equiv='Content-Style-Type' />
+
+  <style>
+    body, #container, #chicago_ward {
+      margin: 0;
+    }
+    #chicago_ward {
+    }
+  </style>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="../src/fusion-library.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#chicago_ward").height(document.body.parentElement.clientHeight);
+
+      $(window).resize(function() {
+        $("#chicago_ward").height(document.body.parentElement.clientHeight);
+      });
+
+      var ward = 27;
+      var chicago_ward_table_id = 2954091;
+      var chicago_centroid = new google.maps.LatLng(41.8781136, -87.66677856445312);
+
+      var ward_map_default_options = {
+        zoom: 12,
+//        center: chicago_centroid,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        streetViewControl: false,
+        suppressInfoWindows: true
+      }
+
+      var map   = Fusion.Map.create("chicago_ward", ward_map_default_options);
+      var layer = Fusion.Layer.create({select: "geometry", from: chicago_ward_table_id}, map.page_element);
+      map.add_map_bounds({from: chicago_ward_table_id}, function(response) {
+        map.set_map_bounds(response);
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    //<![CDATA[
+      google.load('visualization', '1', {}); //used for custom SQL call to get count
+    //]]>
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="chicago_ward"></div>
+  </div>
+</body>
+
