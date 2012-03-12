@@ -1,4 +1,4 @@
-= FusionMaps
+= Fusion Library
 
 A javascript library that makes it easy to integrate google maps and fusion tables
 
@@ -37,8 +37,8 @@ An example html file is provided in this repository under /examples
 
 == Team
 
-Chad W Pry chad.pry@opencityapps.org
-Derek Eder derek.eder@opencityapps.org
+* Chad W Pry mailto:chad.pry@opencityapps.org
+* Derek Eder mailto:derek.eder@opencityapps.org
 
 
 == More detail needed?
