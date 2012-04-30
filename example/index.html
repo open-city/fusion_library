@@ -7,46 +7,41 @@
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
   <meta content='text/css' http-equiv='Content-Style-Type' />
 
-  <style>
-    body, #container, #chicago_ward {
+  <style type="text/css">
+    html, body, #container, #chicago_ward {
+      height: 100%;
       margin: 0;
+      padding: 0;
     }
     #chicago_ward {
+      height: 100%;
+    }
+
+    @media print {
+      html, body {
+        height: auto;
+      }
+
+      #chicago_ward {
+        height: 650px;
+      }
     }
   </style>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
   <script type="text/javascript" src="../src/fusion-library.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
-      // RESIZING OF MAP
-      $("#chicago_ward").height(document.body.parentElement.clientHeight);
-      $(window).resize(function() {
-        $("#chicago_ward").height(document.body.parentElement.clientHeight);
-      });
-
-
-      // DRAWING OF MAP
-      var chicago_ward_table_id = 2954091;
+      var table_id = 2954091;
+      var element = "chicago_ward";
       var chicago_centroid = new google.maps.LatLng(41.8781136, -87.66677856445312);
 
-      var ward_map_default_options = {
-        zoom: 12, center: chicago_centroid, mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false, streetViewControl: false, suppressInfoWindows: true
-      }
-
-      var map   = Fusion.Map.create("chicago_ward", ward_map_default_options);
-      var layer = Fusion.Layer.create({select: "geometry", from: chicago_ward_table_id, where: "name = 26"}, map.page_element);
+      var map = new Fusion.Map(element, {center: chicago_centroid, zoom: 12});
+      map.layers.create({select: "geometry", from: table_id});
+      map.present();
     });
-  </script>
-
-  <script type="text/javascript">
-    //<![CDATA[
-      google.load('visualization', '1', {}); //used for custom SQL call to get count
-    //]]>
   </script>
 </head>
 
