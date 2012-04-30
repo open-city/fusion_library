@@ -38,9 +38,15 @@
       var element = "chicago_ward";
       var chicago_centroid = new google.maps.LatLng(41.8781136, -87.66677856445312);
 
-      var map = new Fusion.Map(element, {center: chicago_centroid, zoom: 12});
+      var map = new Fusion.Map(element, {center: chicago_centroid, zoom: 13, mapTypeControl: true});
       map.layers.create({select: "geometry", from: table_id});
+      map.layers.create({select: "geometry", from: "2928103"});
+      map.layers.create({select: "geometry", from: "3667175"});
       map.present();
+
+      // TURN OFF MAP LAYERS
+      map.layers[1].toggle();
+      map.layers[2].toggle();
     });
   </script>
 </head>

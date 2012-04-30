@@ -6,13 +6,21 @@ Fusion.Map = function(selector, options) {
   this.options = options;
 
   var layers_prototype = this.layers.constructor.prototype;
+  var map = this;
 
   layers_prototype.create = function(query, options) {
     var options = $.extend({
       suppressInfoWindows: true,
       query: query
     }, options);
-    this.push(new google.maps.FusionTablesLayer(options));
+
+    var layer = new google.maps.FusionTablesLayer(options);
+
+    layer.constructor.prototype.toggle = function() {
+      this.setMap(this.getMap() == null ? map.page_element : null);
+    };
+
+    this.push(layer);
   };
 
   layers_prototype.default_options = function(options) {
