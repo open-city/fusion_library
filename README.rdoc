@@ -18,21 +18,19 @@ A javascript library that makes it easy to integrate google maps and fusion tabl
 
 An example html file is provided in this repository under /examples  
 
-  var ward = 27;
-  var chicago_ward_table_id = 2954091;
-  var ward_map_default_options = {
-    zoom: 12,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    mapTypeControl: false,
-    streetViewControl: false,
-    suppressInfoWindows: true
-  }
+  var table_id = 2954091;
+  var element = "chicago_ward";
+  var chicago_centroid = new google.maps.LatLng(41.8781136, -87.66677856445312);
 
-  var map   = Fusion.Map.create("chicago_ward", ward_map_default_options);
-  var layer = Fusion.Layer.create({select: "geometry", from: chicago_ward_table_id}, map.page_element);
-  map.add_map_bounds({from: chicago_ward_table_id}, function(response) {
-    map.set_map_bounds(response);
-  });
+  var map = new Fusion.Map(element, {center: chicago_centroid, zoom: 13, mapTypeControl: true});
+  map.layers.create({select: "geometry", from: table_id});
+  map.layers.create({select: "geometry", from: "2928103"});
+  map.layers.create({select: "geometry", from: "3667175"});
+  map.present();
+
+  // TURN OFF MAP LAYERS
+  //map.layers[1].toggle();
+  map.layers[2].toggle();
 
 
 == Team
